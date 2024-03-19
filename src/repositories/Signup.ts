@@ -16,7 +16,6 @@ export const checkIfUserAlreadyExists = async (email: string) => {
       email,
     },
   });
-
   return foundUser;
 };
 
@@ -28,7 +27,6 @@ export const signUp = async ({
   city,
 }: SignupSchemaType) => {
   const hashedPassword = await hashPassword(password);
-
   const createdUser = await prisma.user.create({
     data: {
       name,
@@ -39,6 +37,5 @@ export const signUp = async ({
       levels: [1],
     },
   });
-
   return createdUser;
 };

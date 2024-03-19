@@ -11,7 +11,6 @@ export const getLevelsOfUser = async (userId: string) => {
       id: userId,
     },
   });
-
   return levels;
 };
 
@@ -26,6 +25,5 @@ export const updateLevelOfUser = async (userId: string, level: number) => {
       id: userId,
     },
   });
-
   return updatedUser;
 };

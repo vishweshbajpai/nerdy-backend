@@ -21,7 +21,6 @@ export const generateToken = (id: string) => {
     userId: id,
     key: treasureHuntKey,
   };
-
   const signedToken = jwt.sign(tokenData, secretKey, {
     expiresIn: tokenExpiryTime,
   });
