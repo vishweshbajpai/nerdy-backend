@@ -10,10 +10,10 @@ const hashPassword = async (password: string) => {
   return result;
 };
 
-export const checkIfUserAlreadyExists = async (username: string) => {
+export const checkIfUserAlreadyExists = async (email: string) => {
   const foundUser = await prisma.user.findFirst({
     where: {
-      username,
+      email,
     },
   });
 
@@ -21,7 +21,7 @@ export const checkIfUserAlreadyExists = async (username: string) => {
 };
 
 export const signUp = async ({
-  username,
+  email,
   password,
   name,
   age,
@@ -32,7 +32,7 @@ export const signUp = async ({
   const createdUser = await prisma.user.create({
     data: {
       name,
-      username,
+      email,
       password: hashedPassword,
       age,
       city,

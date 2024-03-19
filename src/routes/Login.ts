@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
   }
 
   // Check if user already exists
-  const foundUser = await checkIfUserAlreadyExists(body.username);
+  const foundUser = await checkIfUserAlreadyExists(body.email);
   if (!foundUser) {
     return res.status(StatusCodes.BadRequest).json({
       message: "User doesn't exist",
@@ -38,7 +38,7 @@ router.post("/", async (req, res) => {
   const signedToken = generateToken(foundUser.id);
 
   res.status(StatusCodes.Ok).json({
-    message: "Login successfull",
+    message: "Login successful",
     token: signedToken,
     userId: foundUser.id,
   });

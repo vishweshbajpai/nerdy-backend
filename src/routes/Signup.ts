@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
   }
 
   // Check if user already exists
-  const foundUser = await checkIfUserAlreadyExists(body.username);
+  const foundUser = await checkIfUserAlreadyExists(body.email);
   if (foundUser) {
     return res.status(StatusCodes.BadRequest).json({
       message: "User already exists",
@@ -29,7 +29,7 @@ router.post("/", async (req, res) => {
   const signedToken = generateToken(createdUser.id);
 
   res.status(StatusCodes.Ok).json({
-    message: "Signup successfull",
+    message: "Signup successful",
     token: signedToken,
     userId: createdUser.id,
   });
