@@ -6,9 +6,9 @@ export const SignupSchema = z.object({
     .string({ required_error: "Email is required" })
     .email({ message: "Invalid email address" }),
   password: z
-    .string()
+    .string({ required_error: "Password is required" })
     .min(6, { message: "Password must be atleast 6 characters long" }),
-  city: z.string(),
+  city: z.string({ required_error: "City is required" }),
   age: z
     .number({
       required_error: "Age is required",

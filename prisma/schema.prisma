@@ -18,7 +18,7 @@ model User {
   name      String
   email     String  @unique
   password  String
-  age       Int
-  city      String
+  age       Int     @default(0)
+  city      String  @default("")
   levels    Int[]   @unique
 }

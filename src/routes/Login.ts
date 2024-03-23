@@ -12,7 +12,9 @@ router.post("/", async (req, res) => {
   // Input Validation
   const parsed = LoginSchema.safeParse(body);
   if (!parsed.success) {
-    return res.status(StatusCodes.BadRequest).send(parsed.error.issues);
+    return res
+      .status(StatusCodes.BadRequest)
+      .json({ error: parsed.error.issues });
   }
 
   // Check if user already exists
