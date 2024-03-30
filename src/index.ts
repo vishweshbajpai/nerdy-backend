@@ -8,6 +8,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.status(StatusCodes.Ok).json({ message: "Hello World!" });
+});
+
 app.use("/api/v1", rootRouter);
 
 app.use("*", (req, res) => {
