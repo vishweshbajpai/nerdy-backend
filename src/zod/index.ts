@@ -33,8 +33,8 @@ export const UpdateLevelSchema = z.object({
       required_error: "Level is required",
       invalid_type_error: "Level must be a number",
     })
-    .min(2, { message: "Level must be between 2 to 10" })
-    .max(10, { message: "Level must be between 2 to 10" }),
+    .min(2, { message: "Level must be between 2 to 5" })
+    .max(5, { message: "Level must be between 2 to 5" }),
 });
 
 export type SignupSchemaType = z.infer<typeof SignupSchema>;

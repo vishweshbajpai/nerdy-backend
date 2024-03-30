@@ -2,8 +2,17 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+export const getUserWithId = async (userId: string) => {
+  const foundUser = await prisma.user.findFirst({
+    where: {
+      id: userId,
+    },
+  });
+  return foundUser;
+};
+
 export const getLevelsOfUser = async (userId: string) => {
-  const levels = await prisma.user.findFirst({
+  const data = await prisma.user.findFirst({
     select: {
       levels: true,
     },
@@ -11,7 +20,7 @@ export const getLevelsOfUser = async (userId: string) => {
       id: userId,
     },
   });
-  return levels;
+  return data?.levels;
 };
 
 export const updateLevelOfUser = async (userId: string, level: number) => {

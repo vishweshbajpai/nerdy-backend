@@ -33,7 +33,13 @@ router.post("/", async (req, res) => {
   res.status(StatusCodes.Ok).json({
     message: "Signup successful",
     token: signedToken,
-    userId: createdUser.id,
+    userDetails: {
+      id: createdUser.id,
+      name: createdUser.name,
+      email: createdUser.email,
+      age: createdUser.age,
+      city: createdUser.city,
+    },
   });
 });
 

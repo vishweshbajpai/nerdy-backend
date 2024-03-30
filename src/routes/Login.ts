@@ -42,7 +42,13 @@ router.post("/", async (req, res) => {
   res.status(StatusCodes.Ok).json({
     message: "Login successful",
     token: signedToken,
-    userId: foundUser.id,
+    userDetails: {
+      id: foundUser.id,
+      name: foundUser.name,
+      email: foundUser.email,
+      age: foundUser.age,
+      city: foundUser.city,
+    },
   });
 });
 

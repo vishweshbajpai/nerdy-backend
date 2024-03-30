@@ -1,8 +1,11 @@
 import { Router } from "express";
 import { UpdateLevelSchema, UpdateLevelSchemaType } from "../zod";
 import { StatusCodes } from "../utils/enums";
-import { checkIfUserAlreadyExists } from "../repositories/Signup";
-import { getLevelsOfUser, updateLevelOfUser } from "../repositories/User";
+import {
+  getLevelsOfUser,
+  getUserWithId,
+  updateLevelOfUser,
+} from "../repositories/User";
 
 const router = Router();
 
@@ -10,7 +13,7 @@ router.get("/:userId/levels", async (req, res) => {
   const userId: string = req.params.userId;
 
   // Check if user already exists
-  const foundUser = await checkIfUserAlreadyExists(userId);
+  const foundUser = await getUserWithId(userId);
   if (!foundUser) {
     return res.status(StatusCodes.BadRequest).json({
       message: "User not found",
@@ -19,6 +22,7 @@ router.get("/:userId/levels", async (req, res) => {
 
   const levels = await getLevelsOfUser(userId);
   res.status(StatusCodes.Ok).json({
+    message: "Levels loaded successfully",
     levels,
   });
 });
@@ -36,7 +40,7 @@ router.put("/:userId/levels", async (req, res) => {
   }
 
   // Check if user already exists
-  const foundUser = await checkIfUserAlreadyExists(userId);
+  const foundUser = await getUserWithId(userId);
   if (!foundUser) {
     return res.status(StatusCodes.BadRequest).json({
       message: "User not found",
@@ -46,7 +50,7 @@ router.put("/:userId/levels", async (req, res) => {
   if (!foundUser.levels.includes(body.level)) {
     await updateLevelOfUser(userId, body.level);
   }
-  res.status(StatusCodes.Ok).json({ message: "Level updated for user" });
+  res.status(StatusCodes.Ok).json({ message: "Level cleared" });
 });
 
 export default router;

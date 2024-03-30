@@ -16,7 +16,8 @@ export const validateToken = (req, res, next) => {
       .json({ message: "Bearer token expected (JWT)" });
   }
 
-  const token = authHeader.split(" ")[0];
+  const token = authHeader.split(" ")[1];
+
   try {
     const secretKey = process.env.JWT_SECRET ?? Alternates.secretKey;
     const decoded: tokenData = jwt.verify(token, secretKey) as tokenData;
