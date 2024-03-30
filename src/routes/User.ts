@@ -34,9 +34,7 @@ router.put("/:userId/levels", async (req, res) => {
   // Input Validation
   const parsed = UpdateLevelSchema.safeParse(req.body);
   if (!parsed.success) {
-    return res
-      .status(StatusCodes.BadRequest)
-      .json({ error: parsed.error.issues });
+    return res.status(StatusCodes.BadRequest).json({ error: parsed });
   }
 
   // Check if user already exists
