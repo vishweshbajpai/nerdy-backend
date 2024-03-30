@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/api/v1/.*", "dest": "src/index.ts" }
+  ]
+}
