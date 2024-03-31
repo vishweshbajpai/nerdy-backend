@@ -10,9 +10,6 @@ const enums_1 = require("./utils/enums");
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
-app.get("/", (req, res) => {
-    res.status(enums_1.StatusCodes.Ok).json({ message: "Hello World!" });
-});
 app.use("/api/v1", routes_1.default);
 app.use("*", (req, res) => {
     res.status(enums_1.StatusCodes.NotFound).json({ message: "Route not found" });
